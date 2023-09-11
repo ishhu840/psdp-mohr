@@ -22,7 +22,7 @@ class MultiApp:
         with st.sidebar:
             app = option_menu(
                 menu_title='PSDP (FY 2023-24) ',
-                options=['Projects Detail', 'Individual Project', 'Umbrella Project'],
+                options=['Projects Detail', 'Individual Project','Umbrella Project', 'Page4'],
                 icons=['info-circle', 'person-circle', 'umbrella', 'bar_chart'],
                 menu_icon='envelope-fill',
                 default_index=0,  # Set default_index to 0 to select "Page1" by default
@@ -40,7 +40,7 @@ class MultiApp:
             page1.app()
         if app == "Individual Project":
             page2.app()
-        if app == "Page3":
+        if app == "Page4":
             page3.app()
         if app == "Umbrella Project":
             page4.app()
