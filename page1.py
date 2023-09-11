@@ -8,7 +8,7 @@ import random
 import warnings
 warnings.filterwarnings("ignore")
 from typing import ValuesView
-import testpage 
+import Functions 
 
 def app():
 
@@ -43,7 +43,7 @@ def app():
     total_expenditure = df['Expenditure'].sum() / 1000000
     
     st.markdown("---")
-    testpage.printinfo(total_budget,released_budget,total_expenditure)
+    Functions.printinfo(total_budget,released_budget,total_expenditure)
     st.markdown("---")
     st.markdown("##")
 
