@@ -104,7 +104,7 @@ def projectInfoCard(total_budget,released_budget,total_expenditure):
                 <div style="background-color: #ffd9b3; padding: 10px; border-radius: 5px;">
                     <span style="font-size: 20px; font-weight: bold;">Expenditure</span>
                     <br>
-                    <span style="font-size: 24px; color: #ff6600;">July-Aug</span>
+                    <span style="font-size: 24px; color: #ff6600;">July-Sep</span>
                     <br>
                     <span style="font-size: 36px;">{:.2f} m</span>
                 </div>
