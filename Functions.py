@@ -27,6 +27,28 @@ css = """
 
             
         }
+        
+          .custom-info-box1 {
+            background-color: #ffd9b3; /* Light sky blue color */
+            border: 1px solid #1E90FF; /* Blue border */
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 20px; /* Increase font size */
+            font-weight: bold; /* Make the font bold */
+
+            
+        }
+        
+        .custom-info-box2 {
+            background-color: #c2f0c2; /* Light sky blue color */
+            border: 1px solid #1E90FF; /* Blue border */
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 20px; /* Increase font size */
+            font-weight: bold; /* Make the font bold */
+
+            
+        }
         </style>
     """
 
@@ -167,7 +189,7 @@ def circulechart(total_budget,released_budget,total_expenditure,project_name):
             if not pd.isna(project_budget):
                 # Convert to integer if it's not NaN
                 project_budget = float(project_budget)
-                st.markdown(f"<div class='custom-info-box'>Project Budget : {project_budget} M</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='custom-info-box2'>Project Budget : {project_budget} M</div>", unsafe_allow_html=True)
             else:
                 st.markdown("<div class='custom-info-box'>Project Budget not available</div>", unsafe_allow_html=True)
         else:
@@ -182,7 +204,7 @@ def circulechart(total_budget,released_budget,total_expenditure,project_name):
             if not pd.isna(project_totalexp):
                 # Convert to integer if it's not NaN
                 project_totalexp = float(project_totalexp)
-                st.markdown(f"<div class='custom-info-box'>Total Expenditure Till-Date : {project_totalexp + total_expenditure} M</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='custom-info-box1'>Total Expenditure Till-Date : {project_totalexp + total_expenditure} M</div>", unsafe_allow_html=True)
             else:
                 st.markdown("<div class='custom-info-box'>Total Expenditure Till-Date not available</div>", unsafe_allow_html=True)
         else:
