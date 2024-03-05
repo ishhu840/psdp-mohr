@@ -205,8 +205,8 @@ def circulechart(total_budget,released_budget,total_expenditure,project_name):
             if not pd.isna(project_totalexp):
                 # Convert to integer if it's not NaN
                 project_totalexp = float(project_totalexp)
-                st.markdown(f"<div class='custom-info-box1'>Total Expenditure Till-Date : {(project_totalexp + Expenditure):.3f} M</div>", unsafe_allow_html=True)
-                st.markdown(f"<div class='custom-info-box1'>Total Expenditure in % Till-Date : {((project_totalexp + Expenditure)/project_budget * 100):.2f}  %</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='custom-info-box1'>Total Expenditure Till-Date : {(project_totalexp + total_expenditure):.3f} M</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='custom-info-box1'>Total Expenditure in % Till-Date : {((project_totalexp + total_expenditure)/project_budget * 100):.2f}  %</div>", unsafe_allow_html=True)
 
             else:
                 st.markdown("<div class='custom-info-box'>Total Expenditure Till-Date not available</div>", unsafe_allow_html=True)
