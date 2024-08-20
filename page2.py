@@ -1,6 +1,3 @@
-Here is the complete code for the Streamlit application. It includes all the necessary imports, functions, and logic required to run the application:
-
-```python
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -193,4 +190,3 @@ def app():
 
 if __name__ == "__main__":
     app()
-``
