@@ -49,7 +49,7 @@ def app():
     )
      
     
-    selected_option = option_menu(None, ["Budget Execution (2023-24)", "Fund < 70 % Expenditure", 'Funds Headwise Expenditure'], 
+    selected_option = option_menu(None, ["Budget Execution (2024-25)", "Fund < 70 % Expenditure", 'Funds Headwise Expenditure'], 
         icons=['house', "list-task", 'gear'], 
         menu_icon="cast", default_index=0, orientation="horizontal",
         styles={
@@ -61,7 +61,7 @@ def app():
     )
 
     # Depending on the selected option, run different code and display different results
-    if selected_option == "Budget Execution (2023-24)":
+    if selected_option == "Budget Execution (2024-25)":
         # Add your code for the 'Budget Execution (2023-24)' option here
         project_names = df["projectname"].unique()
         st.markdown("---")
