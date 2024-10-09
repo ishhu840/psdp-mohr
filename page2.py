@@ -26,15 +26,6 @@ def styled_box(icon, title, value):
                 <p style='font-size: 30px;'>{value}</p>
             </div>
         """
-        
-""" df = pd.read_excel(
-    io="psdp.xlsx",
-    engine='openpyxl',
-    sheet_name='Umbrella',
-    skiprows=0,
-    usecols='A:F',
-    nrows=50000,
-) """
 
 def app():
     
@@ -58,7 +49,7 @@ def app():
     )
      
     
-    selected_option = option_menu(None, ["Budget Execution (2023-24)", "Projects < 70% Expenditure", 'Projects Headwise Expenditure'], 
+    selected_option = option_menu(None, ["Budget Execution (2023-24)", "Fund < 70 % Expenditure", 'Funds Headwise Expenditure'], 
         icons=['house', "list-task", 'gear'], 
         menu_icon="cast", default_index=0, orientation="horizontal",
         styles={
@@ -124,7 +115,7 @@ def app():
         st.pyplot(plt)
             # You can add your charts, data, or any other content specific to this option here.
 
-    elif selected_option == "Projects < 70% Expenditure":
+    elif selected_option == "Fund < 70 % Expenditure":
         # Add your code for the 'Physical & Financial Detail' option here   
 
      #   st.title(' List of Fund Centers, < then 70 % Expenditure of Released Budget')
@@ -160,6 +151,7 @@ def app():
 
             # Modify the DataFrame for display
             projects_below_70_df_display = projects_below_70_df.copy()
+            print(projects_below_70_df.columns)
             projects_below_70_df_display['Release'] = projects_below_70_df['Release'].apply(lambda x: f"{x:.2f} ")
             projects_below_70_df_display['Expenditure'] = projects_below_70_df['Expenditure'].apply(lambda x: f"{x:.2f} ")
             projects_below_70_df_display['Percentage'] = projects_below_70_df['Percentage'].astype(str) + '%'
@@ -181,7 +173,7 @@ def app():
 
 ###############################################################################################
        
-    elif selected_option == 'Projects Headwise Expenditure':
+    elif selected_option == 'Funds Headwise Expenditure':
         
         projects_below_70_list = []
         headwise_below_70_list = []
@@ -264,3 +256,4 @@ def app():
 ###########################
 if __name__ == '__main__':
     app()
+
