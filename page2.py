@@ -116,16 +116,8 @@ def app():
             # You can add your charts, data, or any other content specific to this option here.
 
     elif selected_option == "Fund < 70 % Expenditure":
-        # Add your code for the 'Physical & Financial Detail' option here   
-
-     #   st.title(' List of Fund Centers, < then 70 % Expenditure of Released Budget')
-
-        # Upload an Excel file
-        # Group data by 'Project' and sum the 'Release Budget' and 'Expenditure' columns
-###############################################################################################
         projects_below_70_list = []
-        headwise_below_70_list = []
-
+        
         # Iterate through unique project names
         for project_name in df['projectname'].unique():
             project_data = df[df['projectname'] == project_name]
@@ -146,28 +138,32 @@ def app():
                     'Percentage': percentage
                 })
 
-        # Create DataFrame from the collected results
-            projects_below_70_df = pd.DataFrame(projects_below_70_list)
+            # New Logic: Check if Expenditure exceeds Release and handle appropriately
+            elif Expenditure > Release:
+                # Highlight cases where expenditure exceeds the released budget
+                st.warning(f"Warning: For project '{project_name}', Expenditure ({Expenditure / 1000000:.2f} million) exceeds Released Budget ({Release / 1000000:.2f} million).")
 
-            # Modify the DataFrame for display
-            projects_below_70_df_display = projects_below_70_df.copy()
-            print(projects_below_70_df.columns)
-            projects_below_70_df_display['Release'] = projects_below_70_df['Release'].apply(lambda x: f"{x:.2f} ")
-            projects_below_70_df_display['Expenditure'] = projects_below_70_df['Expenditure'].apply(lambda x: f"{x:.2f} ")
-            projects_below_70_df_display['Percentage'] = projects_below_70_df['Percentage'].astype(str) + '%'
+        # Create DataFrame from the collected results for projects below 70% expenditure
+        projects_below_70_df = pd.DataFrame(projects_below_70_list)
 
-            # Function to apply styling to the 'Percentage' column
-            def format_percentage(val):
-                try:
-                    percentage_value = float(val[:-1])
-                    if percentage_value < 30:
-                        return 'font-weight: bold; color: red'
-                    else:
-                        return 'font-weight: bold; color: black'
-                except ValueError:
+        # Modify the DataFrame for display
+        projects_below_70_df_display = projects_below_70_df.copy()
+        projects_below_70_df_display['Release'] = projects_below_70_df['Release'].apply(lambda x: f"{x:.2f} ")
+        projects_below_70_df_display['Expenditure'] = projects_below_70_df['Expenditure'].apply(lambda x: f"{x:.2f} ")
+        projects_below_70_df_display['Percentage'] = projects_below_70_df['Percentage'].astype(str) + '%'
+
+        # Function to apply styling to the 'Percentage' column
+        def format_percentage(val):
+            try:
+                percentage_value = float(val[:-1])
+                if percentage_value < 30:
+                    return 'font-weight: bold; color: red'
+                else:
                     return 'font-weight: bold; color: black'
+            except ValueError:
+                return 'font-weight: bold; color: black'
 
-            # Display results in Streamlit
+        # Display results in Streamlit
         st.write("Projects with Overall Expenditure Less Than 70%:")
         st.table(projects_below_70_df_display.style.applymap(format_percentage, subset=['Percentage']).set_table_styles([{'selector': 'th', 'props': [('font-size', '150%')]}]))
 
