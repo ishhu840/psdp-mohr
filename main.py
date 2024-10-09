@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="PSDP - 2023-24", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(page_title="PSDP - 2024-25", page_icon=":bar_chart:", layout="wide")
 
 from streamlit_option_menu import option_menu
 
@@ -21,7 +21,7 @@ class MultiApp:
     def run(self):
         with st.sidebar:
             app = option_menu(
-                menu_title='PSDP (FY 2023-24) ',
+                menu_title='PSDP (FY 2024-25) ',
                 options=['Projects Detail', 'Individual Project','Umbrella Project', 'Page4'],
                 icons=['info-circle', 'person-circle', 'umbrella', 'bar_chart'],
                 menu_icon='envelope-fill',
