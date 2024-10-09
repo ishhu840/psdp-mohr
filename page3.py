@@ -68,16 +68,16 @@ def app():
 
         total_budget = df_selection ['Original Budget'].sum() / 1000000
         released_budget = df_selection ['Released Budget'].sum() / 1000000
-        total_expenditure = df_selection ['Expenditure'].sum() / 1000000
+        Expenditure = df_selection ['Expenditure'].sum() / 1000000
         
 
         st.markdown("---")
-        objFun.projectInfoCard(total_budget,released_budget,total_expenditure )
+        objFun.projectInfoCard(total_budget,released_budget,Expenditure )
 
         st.markdown("---")
         
 
-        objFun.circulechart(total_budget,released_budget,total_expenditure,selected_project)
+        objFun.circulechart(total_budget,released_budget,Expenditure,selected_project)
         
 
         st.markdown("---")
