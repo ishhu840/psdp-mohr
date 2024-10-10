@@ -3,7 +3,7 @@ st.set_page_config(page_title="PSDP - 2024-25", page_icon=":bar_chart:", layout=
 
 from streamlit_option_menu import option_menu
 
-import page1, page2, page3, page4 
+import page1, page2, page4 
 
 # Set Streamlit page configuration
 
@@ -22,7 +22,7 @@ class MultiApp:
         with st.sidebar:
             app = option_menu(
                 menu_title='PSDP (FY 2024-25) ',
-                options=['Projects Detail', 'Individual Project','Umbrella Project', 'Page4'],
+                options=['Projects Detail', 'Individual Project','Umbrella Project'],
                 icons=['info-circle', 'person-circle', 'umbrella', 'bar_chart'],
                 menu_icon='envelope-fill',
                 default_index=0,  # Set default_index to 0 to select "Page1" by default
@@ -40,8 +40,6 @@ class MultiApp:
             page1.app()
         if app == "Individual Project":
             page2.app()
-        if app == "Page4":
-            page3.app()
         if app == "Umbrella Project":
             page4.app()
       
