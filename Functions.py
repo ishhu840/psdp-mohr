@@ -76,7 +76,7 @@ def projectInfoCard(total_budget,released_budget,total_expenditure):
                 <div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
                     <span style="font-size: 20px; font-weight: bold;">Total Budget</span>
                     <br>
-                    <span style="font-size: 24px; color: #0066cc;">FY (2023-24)</span>
+                    <span style="font-size: 24px; color: #0066cc;">FY (2024-25)</span>
                     <br>
                     <span style="font-size: 36px;">{:.2f} m</span>
                 </div>
@@ -90,7 +90,7 @@ def projectInfoCard(total_budget,released_budget,total_expenditure):
                 <div style="background-color: #c2f0c2; padding: 10px; border-radius: 5px;">
                     <span style="font-size: 20px; font-weight: bold;">Released Budget</span>
                     <br>
-                    <span style="font-size: 24px; color: #009900;">Q1 + Q2 + Q3 + Q4</span>
+                    <span style="font-size: 24px; color: #009900;">Q1</span>
                     <br>
                     <span style="font-size: 36px;">{:.2f} m</span>
                 </div>
@@ -129,7 +129,7 @@ def circulechart(total_budget,released_budget,total_expenditure,project_name):
             domain={'x': [0, 1], 'y': [0, 1]},
             value=released_budget,  # Initial value
             mode="gauge+number+delta",
-            title={'text': "Quarter Wise Release & Expenditure (FY : 2023-24)"},
+            title={'text': "Quarter Wise Release & Expenditure (FY : 2024-25)"},
             delta={'reference': total_expenditure},
             gauge={'axis': {'range': [0, total_budget], 'tickwidth': 1, 'tickcolor': "black", 'tickvals': [0, range_1 , range_1 + range_2, range_1 + range_2 + range_3, total_budget]},
                 'bar': {'color': "Green"},
@@ -142,7 +142,7 @@ def circulechart(total_budget,released_budget,total_expenditure,project_name):
             
         # Update the chart with dynamic values
         fig.update_traces(value=released_budget, delta={'reference': total_expenditure})
-       # fig.update_layout(title_text=f" Total Budget (2023-24): {total_budget}, Released: {released_budget},  Expenditure: {total_expenditure}")
+       # fig.update_layout(title_text=f" Total Budget (2024-25): {total_budget}, Released: {released_budget},  Expenditure: {total_expenditure}")
         #fig.update_layout(title_text=f"Quater Wise Release  - Q1 =  {range_1} (15%) , Q2 =  {range_2} (20%), Q3 =  {range_3} (25%) , Q4 =  {range_4} (40%)")
        
         # Show the figure with a smaller size
