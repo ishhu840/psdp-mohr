@@ -87,33 +87,45 @@ def app():
         st.markdown("---")
 
     ############################################################################
-    
         df_grouped = df_selection.groupby('head')[['Expenditure', 'Released Budget']].sum().reset_index()
 
         # Plot Bars
-        #plt.figure(figsize=(16, 10), dpi=80)
         plt.figure(figsize=(20, 10))
         bar_width = 0.35
         bar_positions = range(len(df_grouped))
 
-        plt.bar(bar_positions, df_grouped['Expenditure'], color='skyblue', width=bar_width, label='Expenditure')
+        # Color logic: Red if Expenditure > Released Budget, otherwise Skyblue
+        colors = ['red' if exp > rel else 'skyblue' for exp, rel in zip(df_grouped['Expenditure'], df_grouped['Released Budget'])]
+
+        # Plot Expenditure Bars
+        plt.bar(bar_positions, df_grouped['Expenditure'], color=colors, width=bar_width, label='Expenditure')
+
+        # Plot Released Budget Bars
         plt.bar([pos + bar_width for pos in bar_positions], df_grouped['Released Budget'], color='lightgreen', width=bar_width, label='Released Budget')
 
         # Add data labels
         for i, (exp_val, rel_val) in enumerate(zip(df_grouped['Expenditure'].values, df_grouped['Released Budget'].values)):
-            plt.text(i, exp_val, int(exp_val), horizontalalignment='center', verticalalignment='bottom', fontdict={'fontweight': 500, 'size': 12})
-            plt.text(i + bar_width, rel_val, int(rel_val), horizontalalignment='center', verticalalignment='bottom', fontdict={'fontweight': 500, 'size': 12})
+            plt.text(i, exp_val, int(exp_val), horizontalalignment='center', verticalalignment='bottom',
+                    fontdict={'fontweight': 500, 'size': 14}, color='black')
+            plt.text(i + bar_width, rel_val, int(rel_val), horizontalalignment='center', verticalalignment='bottom',
+                    fontdict={'fontweight': 500, 'size': 14}, color='black')
+
+            # Add the increased amount if Expenditure > Released Budget
+            if exp_val > rel_val:
+                increased_amount = exp_val - rel_val
+                plt.text(i + 0.1, exp_val, f"+{int(increased_amount)}", horizontalalignment='left', verticalalignment='center',
+                        fontdict={'fontweight': 600, 'size': 16}, color='red')  # Positioned to the side and larger
 
         # Decoration
         plt.gca().set_xticks([pos + bar_width / 2 for pos in bar_positions])
-        plt.gca().set_xticklabels(df_grouped['head'], rotation=60, horizontalalignment='right')
+        plt.gca().set_xticklabels(df_grouped['head'], rotation=60, horizontalalignment='right', fontsize=14)
         plt.title(f"Expenditure vs Released Budget for {selected_project} (Head-Wise)", fontsize=22, pad=40)
         plt.legend()
         plt.ylim(0, max(df_grouped['Expenditure'].max(), df_grouped['Released Budget'].max()) + 500)
 
         # Display the plot in Streamlit
         st.pyplot(plt)
-            # You can add your charts, data, or any other content specific to this option here.
+
 
     elif selected_option == "Fund < 70 % Expenditure":
         projects_below_70_list = []
